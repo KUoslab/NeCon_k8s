@@ -562,7 +562,7 @@ func (cm *containerManagerImpl) GetQOSContainersInfo() QOSContainersInfo {
 	return cm.qosContainerManager.GetQOSContainersInfo()
 }
 
-func (cm *containerManagerImpl) UpdateQOSCgroups() error {
+func (cm *containerManagerImpl) UpdateQOSCgroups(pod *v1.Pod) error {
 	return cm.qosContainerManager.UpdateCgroups()
 }
 
