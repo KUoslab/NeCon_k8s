@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+        name: p1
+spec:
+        containers:
+                - name: p1
+                  image: ubuntu
+                  resources:
+                          limits:
+                                  cpu: 100m
+                  command: ["/bin/bash", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+        restartPolicy: Never
+
+
+# 먼저, /proc/necon/container_name 생성
+# 이미있으면 생성 x,create 할 때 추가해주고  

@@ -822,7 +822,7 @@ func (kl *Kubelet) killPod(pod *v1.Pod, runningPod *kubecontainer.Pod, status *k
 	if err := kl.containerRuntime.KillPod(pod, p, gracePeriodOverride); err != nil {
 		return err
 	}
-	if err := kl.containerManager.UpdateQOSCgroups(pod); err != nil {
+	if err := kl.containerManager.UpdateQOSCgroups(); err != nil {
 		klog.V(2).Infof("Failed to update QoS cgroups while killing pod: %v", err)
 	}
 	return nil

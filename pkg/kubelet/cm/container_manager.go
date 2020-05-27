@@ -80,7 +80,7 @@ type ContainerManager interface {
 
 	// UpdateQOSCgroups performs housekeeping updates to ensure that the top
 	// level QoS containers have their desired state in a thread-safe way
-	UpdateQOSCgroups(pod *v1.Pod) error
+	UpdateQOSCgroups() error
 
 	// GetResources returns RunContainerOptions with devices, mounts, and env fields populated for
 	// extended resources required by container.

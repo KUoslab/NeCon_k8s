@@ -60,7 +60,7 @@ func (cm *containerManagerStub) GetQOSContainersInfo() QOSContainersInfo {
 	return QOSContainersInfo{}
 }
 
-func (cm *containerManagerStub) UpdateQOSCgroups(pod *v1.Pod) error {
+func (cm *containerManagerStub) UpdateQOSCgroups() error {
 	return nil
 }
 
