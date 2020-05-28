@@ -30,7 +30,7 @@ go_library(
         "runonce.go",
         "runtime.go",
         "util.go",
-        "volume_host.go",
+        "volume_host.go"
     ],
     importpath = "k8s.io/kubernetes/pkg/kubelet",
     deps = [

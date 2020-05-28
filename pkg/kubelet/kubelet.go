@@ -759,6 +759,9 @@ func NewMainKubelet(kubeCfg *kubeletconfiginternal.KubeletConfiguration,
 		keepTerminatedPodVolumes,
 		volumepathhandler.NewBlockVolumePathHandler())
 
+	//*******es
+	klet.necon = cm.NewNecon()
+	//********
 	klet.reasonCache = NewReasonCache()
 	klet.workQueue = queue.NewBasicWorkQueue(klet.clock)
 	klet.podWorkers = newPodWorkers(klet.syncPod, kubeDeps.Recorder, klet.workQueue, klet.resyncInterval, backOffPeriod, klet.podCache)
@@ -1150,6 +1153,10 @@ type Kubelet struct {
 
 	// Handles RuntimeClass objects for the Kubelet.
 	runtimeClassManager *runtimeclass.Manager
+
+	// ********es
+	necon *cm.Necon
+	// ********
 }
 
 // setupDataDirs creates:
@@ -1408,6 +1415,9 @@ func (kl *Kubelet) syncPod(o syncPodOptions) error {
 	mirrorPod := o.mirrorPod
 	podStatus := o.podStatus
 	updateType := o.updateType
+	// ******** es
+	kl.necon.SetNeconPod(pod)
+	// ********
 
 	// if we want to kill a pod, do it now!
 	if updateType == kubetypes.SyncPodKill {

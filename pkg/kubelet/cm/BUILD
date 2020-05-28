@@ -21,6 +21,7 @@ go_library(
         "pod_container_manager_unsupported.go",
         "qos_container_manager_linux.go",
         "types.go",
+        "necon.go"
     ],
     importpath = "k8s.io/kubernetes/pkg/kubelet/cm",
     visibility = ["//visibility:public"],
