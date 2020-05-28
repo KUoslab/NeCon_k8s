@@ -231,6 +231,11 @@ func (m *cgroupManagerImpl) buildCgroupPaths(name CgroupName) map[string]string 
 	}
 	return cgroupPaths
 }
+/* es
+func (m *cgroupManagerImpl) buildNeconPaths(pod *v1.Pod) map[string]string {
+
+}
+*/
 
 // buildCgroupUnifiedPath builds a path to the specified name.
 func (m *cgroupManagerImpl) buildCgroupUnifiedPath(name CgroupName) string {

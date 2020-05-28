@@ -11,6 +11,7 @@ import (
 	"github.com/opencontainers/runc/libcontainer/cgroups"
 	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
 	"github.com/opencontainers/runc/libcontainer/configs"
+	"k8s.io/api/core/v1"
 )
 
 type CpuGroup struct {
@@ -82,6 +83,15 @@ func (s *CpuGroup) Set(path string, cgroup *configs.Cgroup) error {
 	}
 	return s.SetRtSched(path, cgroup)
 }
+
+// es
+func (s *CpuGroup) SetNecon(path string, pod *v1.Pod) error {
+	if err := fscommon.WriteFile("/home/test/vif1", "goal",strconv.FormatInt(10,10)); err != nil {
+		return err
+		}
+	return nil
+}
+
 
 func (s *CpuGroup) Remove(d *cgroupData) error {
 	return removePath(d.path("cpu"))
