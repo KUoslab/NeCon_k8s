@@ -56,6 +56,7 @@ go_library(
             "//pkg/kubelet/cm/util:go_default_library",
             "//pkg/kubelet/events:go_default_library",
             "//pkg/kubelet/metrics:go_default_library",
+	    "//pkg/kubelet/necon:go_default_library",
             "//pkg/kubelet/qos:go_default_library",
             "//pkg/kubelet/stats/pidlimit:go_default_library",
             "//pkg/kubelet/types:go_default_library",

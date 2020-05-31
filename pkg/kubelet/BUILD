@@ -255,6 +255,7 @@ go_test(
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
         "//vendor/github.com/stretchr/testify/require:go_default_library",
         "//vendor/k8s.io/utils/mount:go_default_library",
+	"//pkg/kubelet/necon:go_default_library",
     ] + select({
         "@io_bazel_rules_go//go/platform:android": [
             "//staging/src/k8s.io/cri-api/pkg/apis/runtime/v1alpha2:go_default_library",
@@ -322,6 +323,7 @@ filegroup(
         "//pkg/kubelet/util:all-srcs",
         "//pkg/kubelet/volumemanager:all-srcs",
         "//pkg/kubelet/winstats:all-srcs",
+        "//pkg/kubelet/necon:all-srcs",
     ],
     tags = ["automanaged"],
 )

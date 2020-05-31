@@ -70,6 +70,7 @@ import (
 	"k8s.io/kubernetes/pkg/kubelet/cm"
 	"k8s.io/kubernetes/pkg/kubelet/config"
 	"k8s.io/kubernetes/pkg/kubelet/configmap"
+	"k8s.io/kubernetes/pkg/kubelet/necon"
 	kubecontainer "k8s.io/kubernetes/pkg/kubelet/container"
 	"k8s.io/kubernetes/pkg/kubelet/dockershim"
 	dockerremote "k8s.io/kubernetes/pkg/kubelet/dockershim/remote"
@@ -836,6 +837,10 @@ func NewMainKubelet(kubeCfg *kubeletconfiginternal.KubeletConfiguration,
 		keepTerminatedPodVolumes,
 		volumepathhandler.NewBlockVolumePathHandler())
 
+	// ****** es
+	//klet.necon = *necon.GetInstance()
+	// ******
+
 	klet.reasonCache = NewReasonCache()
 	klet.workQueue = queue.NewBasicWorkQueue(klet.clock)
 	klet.podWorkers = newPodWorkers(klet.syncPod, kubeDeps.Recorder, klet.workQueue, klet.resyncInterval, backOffPeriod, klet.podCache)
@@ -1227,6 +1232,10 @@ type Kubelet struct {
 
 	// Handles RuntimeClass objects for the Kubelet.
 	runtimeClassManager *runtimeclass.Manager
+
+	// ****** es
+	//necon *necon
+	// ******
 }
 
 // setupDataDirs creates:
@@ -1485,6 +1494,14 @@ func (kl *Kubelet) syncPod(o syncPodOptions) error {
 	mirrorPod := o.mirrorPod
 	podStatus := o.podStatus
 	updateType := o.updateType
+	// ******* es
+	n := necon.GetInstance()
+	n.SetNeconPod(pod)
+	fmt.Println("Get!!!!!!! : ",n.GetNeconPod())
+	k := necon.GetInstance()
+	fmt.Println("GGGGET!!! : ",k.GetNeconPod())
+	// *******
+
 
 	// if we want to kill a pod, do it now!
 	if updateType == kubetypes.SyncPodKill {
