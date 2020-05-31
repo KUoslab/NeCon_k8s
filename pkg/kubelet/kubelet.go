@@ -1497,9 +1497,6 @@ func (kl *Kubelet) syncPod(o syncPodOptions) error {
 	// ******* es
 	n := necon.GetInstance()
 	n.SetNeconPod(pod)
-	fmt.Println("Get!!!!!!! : ",n.GetNeconPod())
-	k := necon.GetInstance()
-	fmt.Println("GGGGET!!! : ",k.GetNeconPod())
 	// *******
 
 
