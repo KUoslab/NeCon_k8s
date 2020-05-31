@@ -361,7 +361,6 @@ func setSupportedSubsystems(cgroupConfig *libcontainerconfigs.Cgroup) error {
 	}
 
 	n := necon.GetInstance()
-	fmt.Println("GETNECONPOD : ",n.GetNeconPod())
 
 /*
 	if err := necon.Set(); err != nil{
