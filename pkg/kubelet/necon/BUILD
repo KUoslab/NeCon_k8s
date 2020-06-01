@@ -13,7 +13,7 @@ go_library(
     importpath = "k8s.io/kubernetes/pkg/kubelet/necon",
     deps = [
         "//staging/src/k8s.io/api/core/v1:go_default_library",
-        "//pkg/api/v1/resource:go_default_library",
+	"//vendor/github.com/prometheus/procfs:go_default_library",
     ],
 )
 

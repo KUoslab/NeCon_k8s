@@ -2,7 +2,7 @@ package necon
 
 import(
 	"k8s.io/api/core/v1"
-	"reflect"
+//	"github.com/prometheus/procfs"
 	"fmt"
 	"sync"
 )
@@ -22,6 +22,7 @@ var(
 func GetInstance() *necon{
 	once.Do(func() {
 		n = &necon{}
+		fmt.Println("necon info : ",n)
 	})
 
 	return n
@@ -32,6 +33,7 @@ func (nec *necon) SetNeconPod(pod v1.Pod) error{
 	if namespace != "kube-system"{
 		nec.pod = pod
 		nec.count++
+		fmt.Println("slo : ",nec.pod.Spec.Containers[0].Resources.Limits["example.com/SLO"])
 		fmt.Println("count : ",nec.count)
 		fmt.Println("not kubesystem pod ",nec.pod)
 	}
@@ -45,12 +47,12 @@ func (nec *necon) GetNeconPod() *v1.Pod{
 
 func (nec *necon) SetSLO() error{
 
-	fmt.Println("namespace : ",nec.pod.ObjectMeta.GetNamespace())
-	fmt.Println("slo : ",reflect.TypeOf(nec.pod.Spec))
 
-	//if nec.namespace != "kube-system" || nec.namespace != ""{
-	//}
+	if nec.pod.ObjectMeta.GetNamespace() != ""{
+		fmt.Println("namespace : ",nec.pod.ObjectMeta.GetNamespace())
+	}
+	nec.pod.Reset()
+//	nec.pod = nil
 
 	return nil
 }
-//func (n *Necon) 
