@@ -12,7 +12,7 @@ go_library(
     ],
     importpath = "k8s.io/kubernetes/pkg/kubelet/necon",
     deps = [
-        "//pkg/api/v1/pod:go_default_library",
+        "//staging/src/k8s.io/api/core/v1:go_default_library",
         "//pkg/api/v1/resource:go_default_library",
     ],
 )
