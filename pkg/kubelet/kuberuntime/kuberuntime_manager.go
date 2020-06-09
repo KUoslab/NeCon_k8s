@@ -760,13 +760,14 @@ func (m *kubeGenericRuntimeManager) SyncPod(pod *v1.Pod, podStatus *kubecontaine
 			klog.V(4).Infof("Determined the ip %v for pod %q after sandbox changed", podIPs, format.Pod(pod))
 		}
 
+		// ***** eunsook
 		n := necon.GetInstance()
 		err = n.SetSLO()
 		if err != nil{
 			fmt.Println("SetSLO Error!")
 			return
 		}
-
+		// *****
 	}
 
 	// the start containers routines depend on pod ip(as in primary pod ip)

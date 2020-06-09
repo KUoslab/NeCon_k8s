@@ -359,10 +359,6 @@ func setSupportedSubsystems(cgroupConfig *libcontainerconfigs.Cgroup) error {
 			return fmt.Errorf("failed to set config for supported subsystems : %v", err)
 		}
 	}
-	//n := necon.GetInstance()
-	//if err := n.SetSLO(); err != nil {
-	//	return fmt.Errorf("failed to set config for supported subsystems : %v",err)
-	//}
 	return nil
 }
 

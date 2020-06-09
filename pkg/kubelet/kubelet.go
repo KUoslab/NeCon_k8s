@@ -837,9 +837,6 @@ func NewMainKubelet(kubeCfg *kubeletconfiginternal.KubeletConfiguration,
 		keepTerminatedPodVolumes,
 		volumepathhandler.NewBlockVolumePathHandler())
 
-	// ****** es
-	//klet.necon = *necon.GetInstance()
-	// ******
 
 	klet.reasonCache = NewReasonCache()
 	klet.workQueue = queue.NewBasicWorkQueue(klet.clock)
@@ -1233,9 +1230,6 @@ type Kubelet struct {
 	// Handles RuntimeClass objects for the Kubelet.
 	runtimeClassManager *runtimeclass.Manager
 
-	// ****** es
-	//necon *necon
-	// ******
 }
 
 // setupDataDirs creates:
@@ -1634,7 +1628,7 @@ func (kl *Kubelet) syncPod(o syncPodOptions) error {
 		// We don't create and apply updates to cgroup if its a run once pod and was killed above
 		if !(podKilled && pod.Spec.RestartPolicy == v1.RestartPolicyNever) {
 			if !pcm.Exists(pod) {
-				// ******* es
+				// ******* eunsook
 				n := necon.GetInstance()
 				n.SetNeconPod(*pod)
 				// *******
@@ -1645,7 +1639,6 @@ func (kl *Kubelet) syncPod(o syncPodOptions) error {
 					kl.recorder.Eventf(pod, v1.EventTypeWarning, events.FailedToCreatePodContainer, "unable to ensure pod container exists: %v", err)
 					return fmt.Errorf("failed to ensure that the pod: %v cgroups exist and are correctly applied: %v", pod.UID, err)
 				}
-				//n.SetSLO()
 			}
 		}
 	}
