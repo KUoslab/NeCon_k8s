@@ -1,18 +1,18 @@
 kind: Pod
 apiVersion: v1
 metadata:
-        name: p4
+        name: p5
         annotations:
                 kubernetes.io/ingress-bandwidth: 300M
                 kubernetes.io/egress-bandwidth: 300M
 spec:
         containers:
-                - name: p4
+                - name: p5
                   image: ubuntu
                   resources: 
                     limits:
                             cpu: 5
-                            example.com/SLO: 300
+                            example.com/SLO: 1
                   command: ["/bin/bash", "-ec", "while :; do echo '.'; sleep 5 ; done"]
         restartPolicy: Never
         tolerations:
